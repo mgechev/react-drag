@@ -1,0 +1,29 @@
+{
+  "name": "react-drag",
+  "version": "0.1.0",
+  "homepage": "https://github.com/mgechev/react-drag",
+  "authors": [
+    "Matt Zabriskie",
+    "Minko Gechev"
+  ],
+  "description": "React draggable component",
+  "main": "./dist/react-drag.js",
+  "keywords": [
+    "react",
+    "draggable",
+    "drag"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "example",
+    "lib",
+    "node_modules",
+    "script",
+    "specs",
+    "index.js",
+    "karma.conf.js",
+    "webpack.config.js",
+    "package.json"
+  ]
+}
