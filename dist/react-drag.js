@@ -69,9 +69,16 @@ if (typeof window === 'undefined') {
     // Do Node Stuff
   var isTouchDevice = false;
 } else {
-    // Do Browser Stuff
+  // Do Browser Stuff
   var isTouchDevice = 'ontouchstart' in window // works on most browsers
     || 'onmsgesturechange' in window; // works on ie10 on ms surface
+  // Check for IE11
+  try {
+    document.createEvent('TouchEvent');
+  } catch (e) {
+    isTouchDevice = false;
+  }
+
 }
 
 // look ::handleDragStart

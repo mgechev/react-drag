@@ -30,3 +30,5 @@ gulp.task('umd', function () {
    .pipe(rename('react-drag.js'))
    .pipe(gulp.dest('./dist'));
 });
+
+gulp.task('default', ['minify']);
