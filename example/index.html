@@ -48,12 +48,12 @@
 	</style>
 </head>
 <body>
-<script src="//fb.me/react-with-addons-0.11.1.js"></script>
-<script src="//fb.me/JSXTransformer-0.11.1.js"></script>
-<script src="../dist/react-draggable.min.js"></script>
+<script src="../node_modules/react/dist/react-with-addons.min.js"></script>
+<script src="../node_modules/react/dist/JSXTransformer.js"></script>
+<script src="../dist/react-drag.min.js"></script>
 <script type="text/jsx">
   /** @jsx React.DOM */
-  var Draggable = ReactDraggable;
+  var Draggable = ReactDrag;
   var App = React.createClass({
     getInitialState: function () {
       return {
@@ -114,7 +114,7 @@
     }
   });
 
-  React.renderComponent(<App/>, document.body);
+  React.render(<App/>, document.body);
 </script>
 </body>
 </html>
