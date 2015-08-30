@@ -1,16 +1,11 @@
 {
   "name": "react-drag",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "React draggable component",
   "main": "dist/react-drag.js",
   "scripts": {
     "test": "script/test --browsers Firefox --single-run",
     "start": "script/build"
-  },
-  "browserify": {
-    "transform": [
-      "reactify"
-    ]
   },
   "repository": {
     "type": "git",
