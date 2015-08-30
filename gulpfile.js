@@ -21,7 +21,7 @@ gulp.task('umd', function () {
         return [
           {
             name: 'React',
-            cjs: 'React',
+            cjs: 'react/addons',
             global: 'React'
           }
         ];

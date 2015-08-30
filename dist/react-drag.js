@@ -2,7 +2,7 @@
   if (typeof define === 'function' && define.amd) {
     define(['React'], factory);
   } else if (typeof exports === 'object') {
-    module.exports = factory(require('React'));
+    module.exports = factory(require('react/addons'));
   } else {
     root.ReactDrag = factory(root.React);
   }
