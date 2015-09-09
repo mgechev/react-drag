@@ -1,12 +1,8 @@
 {
   "name": "react-drag",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "React draggable component",
   "main": "dist/react-drag.js",
-  "scripts": {
-    "test": "script/test --browsers Firefox --single-run",
-    "start": "script/build"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/mgechev/react-drag.git"

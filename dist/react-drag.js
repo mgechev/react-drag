@@ -38,8 +38,8 @@ var CX = classNames;
 function createUIEvent(draggable) {
   return {
     position: {
-      top: draggable.state.clientY,
-      left: draggable.state.clientX
+      top: draggable.state.pageY,
+      left: draggable.state.pageX
     }
   };
 }
@@ -127,17 +127,17 @@ var dragEventFor = (function () {
 })();
 
 /**
- * get {clientX, clientY} positions of control
+ * get {pageX, pageY} positions of control
  * */
 function getControlPosition(e) {
   var position = (e.touches && e.touches[0]) || e;
   return {
-    clientX: position.clientX,
-    clientY: position.clientY
+    pageX: position.pageX,
+    pageY: position.pageY
   };
 }
 
-function getBoundPosition(clientX, clientY, bound, target) {
+function getBoundPosition(pageX, pageY, bound, target) {
   if (bound) {
     if ((typeof bound !== 'string' && bound.toLowerCase() !== 'parent') &&
         (typeof bound !== 'object')) {
@@ -148,14 +148,14 @@ function getBoundPosition(clientX, clientY, bound, target) {
     var leftLimit = bound.left || 0;
     var rightLimit = bound.right || par.offsetWidth;
     var bottomLimit = bound.bottom || par.offsetHeight;
-    clientX = Math.min(clientX, rightLimit - target.offsetWidth);
-    clientY = Math.min(clientY, bottomLimit - target.offsetHeight);
-    clientX = Math.max(leftLimit, clientX);
-    clientY = Math.max(topLimit, clientY);
+    pageX = Math.min(pageX, rightLimit - target.offsetWidth);
+    pageY = Math.min(pageY, bottomLimit - target.offsetHeight);
+    pageX = Math.max(leftLimit, pageX);
+    pageY = Math.max(topLimit, pageY);
   }
   return {
-    clientX: clientX,
-    clientY: clientY
+    pageX: pageX,
+    pageY: pageY
   };
 }
 
@@ -405,8 +405,8 @@ var ReactDrag = React.createClass({
       offsetY: 0,
 
       // Current top/left of this.getDOMNode()
-      clientX: this.props.start.x,
-      clientY: this.props.start.y
+      pageX: this.props.start.x,
+      pageY: this.props.start.y
     };
   },
 
@@ -435,8 +435,8 @@ var ReactDrag = React.createClass({
     // Initiate dragging
     this.setState({
       dragging: true,
-      offsetX: parseInt(dragPoint.clientX, 10),
-      offsetY: parseInt(dragPoint.clientY, 10),
+      offsetX: parseInt(dragPoint.pageX, 10),
+      offsetY: parseInt(dragPoint.pageY, 10),
       startX: parseInt(node.style.left, 10) || 0,
       startY: parseInt(node.style.top, 10) || 0
     });
@@ -472,37 +472,37 @@ var ReactDrag = React.createClass({
     var dragPoint = getControlPosition(e);
 
     // Calculate top and left
-    var clientX = (this.state.startX +
-        (dragPoint.clientX - this.state.offsetX));
-    var clientY = (this.state.startY +
-        (dragPoint.clientY - this.state.offsetY));
+    var pageX = (this.state.startX +
+        (dragPoint.pageX - this.state.offsetX));
+    var pageY = (this.state.startY +
+        (dragPoint.pageY - this.state.offsetY));
     var pos =
-      getBoundPosition(clientX, clientY, this.props.bound, this.getDOMNode());
-    clientX = pos.clientX;
-    clientY = pos.clientY;
+      getBoundPosition(pageX, pageY, this.props.bound, this.getDOMNode());
+    pageX = pos.pageX;
+    pageY = pos.pageY;
 
     // Snap to grid if prop has been provided
     if (Array.isArray(this.props.grid)) {
-      var directionX = clientX < parseInt(this.state.clientX, 10) ? -1 : 1;
-      var directionY = clientY < parseInt(this.state.clientY, 10) ? -1 : 1;
+      var directionX = pageX < parseInt(this.state.pageX, 10) ? -1 : 1;
+      var directionY = pageY < parseInt(this.state.pageY, 10) ? -1 : 1;
 
-      clientX = Math.abs(clientX - parseInt(this.state.clientX, 10)) >=
+      pageX = Math.abs(pageX - parseInt(this.state.pageX, 10)) >=
           this.props.grid[0]
-          ? (parseInt(this.state.clientX, 10) +
+          ? (parseInt(this.state.pageX, 10) +
             (this.props.grid[0] * directionX))
-          : this.state.clientX;
+          : this.state.pageX;
 
-      clientY = Math.abs(clientY - parseInt(this.state.clientY, 10)) >=
+      pageY = Math.abs(pageY - parseInt(this.state.pageY, 10)) >=
           this.props.grid[1]
-          ? (parseInt(this.state.clientY, 10) +
+          ? (parseInt(this.state.pageY, 10) +
             (this.props.grid[1] * directionY))
-          : this.state.clientY;
+          : this.state.pageY;
     }
 
     // Update top and left
     this.setState({
-      clientX: clientX,
-      clientY: clientY
+      pageX: pageX,
+      pageY: pageY
     });
 
     // Call event handler
@@ -516,12 +516,12 @@ var ReactDrag = React.createClass({
     var style = {
       // Set top if vertical drag is enabled
       top: canDragY(this)
-        ? this.state.clientY
+        ? this.state.pageY
         : this.state.startY,
 
       // Set left if horizontal drag is enabled
       left: canDragX(this)
-        ? this.state.clientX
+        ? this.state.pageX
         : this.state.startX
     };
 
