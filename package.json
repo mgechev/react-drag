@@ -1,8 +1,8 @@
 {
   "name": "react-drag",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "React draggable component",
-  "main": "dist/react-drag.js",
+  "main": "lib/react-drag.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/mgechev/react-drag.git"
