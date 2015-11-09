@@ -18,6 +18,10 @@
     "url": "https://github.com/mgechev/react-drag/issues"
   },
   "homepage": "https://github.com/mgechev/react-drag",
+  "dependencies": {
+    "react": "^0.14.0",
+    "react-dom": "^0.14.2"
+  },
   "devDependencies": {
     "browserify": "^12.0.1",
     "gulp": "^3.8.11",
@@ -28,8 +32,6 @@
     "karma-cli": "0.0.4",
     "karma-firefox-launcher": "^0.1.3",
     "karma-jasmine": "^0.1.5",
-    "react": "^0.14.0",
-    "react-dom": "^0.14.2",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   },
