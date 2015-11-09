@@ -1,15 +1,9 @@
-(function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    define(['React'], factory);
-  } else if (typeof exports === 'object') {
-    module.exports = factory(require('react/addons'));
-  } else {
-    root.ReactDrag = factory(root.React);
-  }
-}(this, function(React) {
-/* global React */
-/* exported ReactDrag */
+(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.ReactDrag = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function (global){
 'use strict';
+
+var React = (typeof window !== "undefined" ? window['React'] : typeof global !== "undefined" ? global['React'] : null);
+var findDOMNode = (typeof window !== "undefined" ? window['ReactDOM'] : typeof global !== "undefined" ? global['ReactDOM'] : null).findDOMNode;
 
 function classNames() {
   var classes = '';
@@ -421,7 +415,7 @@ var ReactDrag = React.createClass({
     // Make it possible to attach event handlers on top of this one
     this.props.onMouseDown(e);
 
-    var node = this.getDOMNode();
+    var node = findDOMNode(this);
 
     // Short circuit if handle or cancel prop was provided
     // and selector doesn't match
@@ -477,7 +471,7 @@ var ReactDrag = React.createClass({
     var pageY = (this.state.startY +
         (dragPoint.pageY - this.state.offsetY));
     var pos =
-      getBoundPosition(pageX, pageY, this.props.bound, this.getDOMNode());
+      getBoundPosition(pageX, pageY, this.props.bound, findDOMNode(this));
     pageX = pos.pageX;
     pageY = pos.pageY;
 
@@ -531,7 +525,7 @@ var ReactDrag = React.createClass({
     });
     // Reuse the child provided
     // This makes it flexible to use whatever element is wanted (div, ul, etc)
-    return React.addons.cloneWithProps(
+    return React.cloneElement(
         React.Children.only(this.props.children), {
       style: style,
       className: className,
@@ -548,5 +542,9 @@ var ReactDrag = React.createClass({
   }
 });
 
-return ReactDrag;
-}));
+module.exports = ReactDrag;
+
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{}]},{},[1])(1)
+});

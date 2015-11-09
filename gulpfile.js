@@ -1,9 +1,11 @@
 var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
-var umd = require('gulp-umd');
+var browserify = require('browserify');
+var source = require('vinyl-source-stream');
+var buffer = require('vinyl-buffer');
 
-gulp.task('minify', ['umd'], function () {
+gulp.task('minify', ['browserify'], function () {
   'use strict';
   return gulp.src('./dist/react-drag.js')
     .pipe(rename('ReactDrag.js'))
@@ -12,23 +14,18 @@ gulp.task('minify', ['umd'], function () {
     .pipe(gulp.dest('./dist'));
 });
 
-gulp.task('umd', function () {
+gulp.task('browserify', function () {
   'use strict';
-  return gulp.src('./lib/react-drag.js')
-    .pipe(rename('ReactDrag.js'))
-    .pipe(umd({
-      dependencies: function () {
-        return [
-          {
-            name: 'React',
-            cjs: 'react/addons',
-            global: 'React'
-          }
-        ];
-      }
-    }))
-   .pipe(rename('react-drag.js'))
-   .pipe(gulp.dest('./dist'));
+  return browserify(['./lib/react-drag.js'], {
+      standalone: 'ReactDrag'
+    })
+    .external(['react', 'react-dom'])
+    .bundle()
+    .pipe(source('ReactDrag.js'))
+    .pipe(buffer())
+    .pipe(rename('react-drag.js'))
+    .pipe(gulp.dest('./dist'));
 });
 
 gulp.task('default', ['minify']);
+

@@ -1,120 +1,200 @@
 <!doctype html>
 <html>
 <head>
-	<meta charset="utf-8"/>
-	<title>React Draggable</title>
-	<link rel="stylesheet" type="text/css" href="../lib/styles.css"/>
-	<style type="text/css">
-		body {
-			color: #222;
-			font-family: "Helvetica Neue", sans-serif;
-			font-weight: 200;
-			margin: 0 50px;
-		}
+  <meta charset="utf-8"/>
+  <title>React Drag</title>
+  <link rel="stylesheet" type="text/css" href="../lib/styles.css"/>
+  <style type="text/css">
+    body {
+      color: #222;
+      font-family: "Helvetica Neue", sans-serif;
+      font-weight: 200;
+      margin: 0 50px;
+    }
 
-		.react-draggable, .cursor {
-			cursor: move;
-		}
-		.no-cursor {
-			cursor: auto;
-		}
-		.cursor-y {
-			cursor: ns-resize;
-		}
-		.cursor-x {
-			cursor: ew-resize;
-		}
+    .react-draggable, .cursor {
+      cursor: move;
+    }
+    .no-cursor {
+      cursor: auto;
+    }
+    .cursor-y {
+      cursor: ns-resize;
+    }
+    .cursor-x {
+      cursor: ew-resize;
+    }
 
-		.react-draggable strong {
-			background: #ddd;
-			border: 1px solid #999;
-			border-radius: 3px;
-			display: block;
-			margin-bottom: 10px;
-			padding: 3px 5px;
-			text-align: center;
-		}
+    .react-draggable strong {
+      background: #ddd;
+      border: 1px solid #999;
+      border-radius: 3px;
+      display: block;
+      margin-bottom: 10px;
+      padding: 3px 5px;
+      text-align: center;
+    }
 
-		.box {
-			background: #fff;
-			border: 1px solid #999;
-			border-radius: 3px;
-			width: 150px;
-			height: 150px;
-			margin: 10px;
-			padding: 10px;
-			float: left;
-		}
-	</style>
+    .box {
+      background: #fff;
+      border: 1px solid #999;
+      border-radius: 3px;
+      width: 150px;
+      height: 150px;
+      margin: 10px;
+      padding: 10px;
+      float: left;
+    }
+  </style>
 </head>
 <body>
-<script src="../node_modules/react/dist/react-with-addons.min.js"></script>
-<script src="../node_modules/react/dist/JSXTransformer.js"></script>
-<script src="../dist/react-drag.min.js"></script>
-<script type="text/jsx">
-  /** @jsx React.DOM */
-  var Draggable = ReactDrag;
-  var App = React.createClass({
-    getInitialState: function () {
-      return {
-        position: {
-          top: 0, left: 0
-        }
-      };
-    },
+  <div id="container"></div>
+<script src="../node_modules/react/dist/react-with-addons.js"></script>
+<script src="../node_modules/react-dom/dist/react-dom.js"></script>
+<script src="../dist/react-drag.js"></script>
+<script>
+var App = React.createClass({
+  displayName: "App",
 
-    handleDrag: function (e, ui) {
-      this.setState({
-        position: ui.position
-      });
-    },
+  getInitialState: function getInitialState() {
+    return {
+      position: {
+        top: 0, left: 0
+      }
+    };
+  },
 
-    render: function () {
-      return (
-        <div>
-          <h1>React Draggable</h1>
-          <p>
-            <a href="https://github.com/mzabriskie/react-draggable/blob/master/example/index.html">Demo Source</a>
-          </p>
-          <Draggable zIndex={100}>
-            <div className="box">I can be dragged anywhere</div>
-          </Draggable>
-          <Draggable axis="x" zIndex={100}>
-            <div className="box cursor-x">I can only be dragged horizonally</div>
-          </Draggable>
-          <Draggable axis="y" zIndex={100}>
-            <div className="box cursor-y">I can only be dragged vertically</div>
-          </Draggable>
-          <Draggable onDrag={this.handleDrag} zIndex={100}>
-            <div className="box">
-              <div>I track my position</div>
-              <div>top: {this.state.position.top}, left: {this.state.position.left}</div>
-            </div>
-          </Draggable>
-          <Draggable handle="strong" zIndex={100}>
-            <div className="box no-cursor">
-              <strong className="cursor">Drag here</strong>
-              <div>You must click my handle to drag me</div>
-            </div>
-          </Draggable>
-          <Draggable cancel="strong" zIndex={100}>
-            <div className="box">
-              <strong className="no-cursor">Can't drag here</strong>
-              <div>Dragging here works</div>
-            </div>
-          </Draggable>
-          <Draggable grid={[25, 25]}>
-            <div className="box">I snap to a 25 x 25 grid</div>
-          </Draggable>
-          <Draggable grid={[50, 50]}>
-            <div className="box">I snap to a 50 x 50 grid</div>
-          </Draggable>
-        </div>
-      );
-    }
-  });
+  handleDrag: function handleDrag(e, ui) {
+    this.setState({
+      position: ui.position
+    });
+  },
 
-  React.render(<App/>, document.body);
+  render: function render() {
+    return React.createElement(
+      "div",
+      null,
+      React.createElement(
+        "h1",
+        null,
+        "React ReactDrag"
+      ),
+      React.createElement(
+        "p",
+        null,
+        React.createElement(
+          "a",
+          { href: "https://github.com/mzabriskie/react-draggable/blob/master/example/index.html" },
+          "Demo Source"
+        )
+      ),
+      React.createElement(
+        ReactDrag,
+        { zIndex: 100 },
+        React.createElement(
+          "div",
+          { className: "box" },
+          "I can be dragged anywhere"
+        )
+      ),
+      React.createElement(
+        ReactDrag,
+        { axis: "x", zIndex: 100 },
+        React.createElement(
+          "div",
+          { className: "box cursor-x" },
+          "I can only be dragged horizonally"
+        )
+      ),
+      React.createElement(
+        ReactDrag,
+        { axis: "y", zIndex: 100 },
+        React.createElement(
+          "div",
+          { className: "box cursor-y" },
+          "I can only be dragged vertically"
+        )
+      ),
+      React.createElement(
+        ReactDrag,
+        { onDrag: this.handleDrag, zIndex: 100 },
+        React.createElement(
+          "div",
+          { className: "box" },
+          React.createElement(
+            "div",
+            null,
+            "I track my position"
+          ),
+          React.createElement(
+            "div",
+            null,
+            "top: ",
+            this.state.position.top,
+            ", left: ",
+            this.state.position.left
+          )
+        )
+      ),
+      React.createElement(
+        ReactDrag,
+        { handle: "strong", zIndex: 100 },
+        React.createElement(
+          "div",
+          { className: "box no-cursor" },
+          React.createElement(
+            "strong",
+            { className: "cursor" },
+            "Drag here"
+          ),
+          React.createElement(
+            "div",
+            null,
+            "You must click my handle to drag me"
+          )
+        )
+      ),
+      React.createElement(
+        ReactDrag,
+        { cancel: "strong", zIndex: 100 },
+        React.createElement(
+          "div",
+          { className: "box" },
+          React.createElement(
+            "strong",
+            { className: "no-cursor" },
+            "Can't drag here"
+          ),
+          React.createElement(
+            "div",
+            null,
+            "Dragging here works"
+          )
+        )
+      ),
+      React.createElement(
+        ReactDrag,
+        { grid: [25, 25] },
+        React.createElement(
+          "div",
+          { className: "box" },
+          "I snap to a 25 x 25 grid"
+        )
+      ),
+      React.createElement(
+        ReactDrag,
+        { grid: [50, 50] },
+        React.createElement(
+          "div",
+          { className: "box" },
+          "I snap to a 50 x 50 grid"
+        )
+      )
+    );
+  }
+});
+
+ReactDOM.render(React.createElement(App, null), document.getElementById('container'));
 </script>
 </body>
 </html>
