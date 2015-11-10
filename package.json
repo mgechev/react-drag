@@ -1,6 +1,6 @@
 {
   "name": "react-drag",
-  "version": "0.2.4",
+  "version": "0.2.6",
   "description": "React draggable component",
   "main": "lib/react-drag.js",
   "repository": {
@@ -39,11 +39,6 @@
   "peerDependencies": {
     "react": "^0.14.0",
     "react-dom": "^0.14.2"
-  },
-  "browserify": {
-    "transform": [
-      "browserify-shim"
-    ]
   },
   "browserify-shim": {
     "react": "global:React",
