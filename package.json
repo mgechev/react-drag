@@ -3,6 +3,11 @@
   "version": "0.2.7",
   "description": "React draggable component",
   "main": "lib/react-drag.js",
+  "scripts": {
+    "build": "browserify -x react -x react-dom --standalone ReactDrag ./lib/react-drag.js > ./dist/react-drag.js",
+    "minify": "uglifyjs ./dist/react-drag.js --screw-ie8 --compress --mangle --output ./dist/react-drag.min.js",
+    "build_publish": "npm run build && npm run minify"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/mgechev/react-drag.git"
@@ -19,15 +24,12 @@
   },
   "homepage": "https://github.com/mgechev/react-drag",
   "dependencies": {
-    "react": "^0.14.0",
-    "react-dom": "^0.14.2"
+    "react": "^15.3.0",
+    "react-dom": "^15.3.0"
   },
   "devDependencies": {
-    "browserify": "^12.0.1",
+    "browserify": "^13.0.0",
     "browserify-shim": "^3.8.11",
-    "gulp": "^3.8.11",
-    "gulp-rename": "^1.2.0",
-    "gulp-uglify": "^1.1.0",
     "karma": "^0.12.19",
     "karma-chrome-launcher": "^0.1.4",
     "karma-cli": "0.0.4",
@@ -37,8 +39,11 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "peerDependencies": {
-    "react": "^0.14.0",
-    "react-dom": "^0.14.2"
+    "react": "^15.3.0",
+    "react-dom": "^15.3.0"
+  },
+  "browserify": {
+    "transform": ["browserify-shim"]
   },
   "browserify-shim": {
     "react": "global:React",
