@@ -4,6 +4,8 @@
 
 var React = (typeof window !== "undefined" ? window['React'] : typeof global !== "undefined" ? global['React'] : null);
 var findDOMNode = (typeof window !== "undefined" ? window['ReactDOM'] : typeof global !== "undefined" ? global['ReactDOM'] : null).findDOMNode;
+var propTypes = require('prop-types');
+var createReactClass = require('create-react-class');
 
 function classNames() {
   var classes = '';
@@ -175,7 +177,7 @@ function removeEvent(el, event, handler) {
   }
 }
 
-var ReactDrag = React.createClass({
+var ReactDrag = createReactClass({
   displayName: 'Draggable',
 
   propTypes: {
@@ -188,7 +190,7 @@ var ReactDrag = React.createClass({
      *
      * Defaults to 'both'.
      */
-    axis: React.PropTypes.oneOf(['both', 'x', 'y']),
+    axis: propTypes.oneOf(['both', 'x', 'y']),
 
     /**
      * `handle` specifies a selector to be used as the handle
@@ -211,7 +213,7 @@ var ReactDrag = React.createClass({
      *   });
      * ```
      */
-    handle: React.PropTypes.string,
+    handle: propTypes.string,
 
     /**
      * `cancel` specifies a selector to be used to prevent drag initialization.
@@ -233,7 +235,7 @@ var ReactDrag = React.createClass({
      *   });
      * ```
      */
-    cancel: React.PropTypes.string,
+    cancel: propTypes.string,
 
     /**
      * `grid` specifies the x and y that dragging should snap to.
@@ -252,7 +254,7 @@ var ReactDrag = React.createClass({
      *   });
      * ```
      */
-    grid: React.PropTypes.arrayOf(React.PropTypes.number),
+    grid: propTypes.arrayOf(propTypes.number),
 
     /**
      * `start` specifies the x and y that the dragged item should start at
@@ -271,7 +273,7 @@ var ReactDrag = React.createClass({
      *   });
      * ```
      */
-    start: React.PropTypes.object,
+    start: propTypes.object,
 
     /**
      * Called when dragging starts.
@@ -291,7 +293,7 @@ var ReactDrag = React.createClass({
      *  }
      * ```
      */
-    onStart: React.PropTypes.func,
+    onStart: propTypes.func,
 
     /**
      * Called while dragging.
@@ -311,7 +313,7 @@ var ReactDrag = React.createClass({
      *  }
      * ```
      */
-    onDrag: React.PropTypes.func,
+    onDrag: propTypes.func,
 
     /**
      * Called when dragging stops.
@@ -331,7 +333,7 @@ var ReactDrag = React.createClass({
      *  }
      * ```
      */
-    onStop: React.PropTypes.func,
+    onStop: propTypes.func,
 
     /**
      * A workaround option which can be passed if
@@ -340,7 +342,7 @@ var ReactDrag = React.createClass({
      * there's internal use of onMouseDown)
      *
      */
-    onMouseDown: React.PropTypes.func,
+    onMouseDown: propTypes.func,
 
     /**
      * Defines the bounderies around the element
@@ -358,7 +360,7 @@ var ReactDrag = React.createClass({
      * The only acceptable string
      * property is: "parent".
      */
-    bound: React.PropTypes.any
+    bound: propTypes.any
   },
 
   componentWillUnmount: function () {
@@ -553,5 +555,5 @@ module.exports = ReactDrag;
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[1])(1)
+},{"create-react-class":"create-react-class","prop-types":"prop-types"}]},{},[1])(1)
 });
