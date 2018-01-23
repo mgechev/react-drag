@@ -2,10 +2,12 @@
 
 React draggable component. Fork of [react-draggable](https://github.com/mzabriskie/react-draggable/).
 
+Compatible with React 16, thanks to [@james-ecargo](https://github.com/james-ecargo).
+
 ## Installing
 
 ```bash
-$ bower install react-drag
+$ npm i react-drag
 ```
 
 ## Example
