@@ -60,6 +60,6 @@
     "react": "global:React",
     "react-dom": "global:ReactDOM",
     "prop-types": "global:PropTypes",
-    "create-react-class":  "global:createReactClass"
+    "create-react-class": "global:createReactClass"
   }
 }
