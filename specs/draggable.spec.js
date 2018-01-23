@@ -1,7 +1,7 @@
-/** @jsx React.DOM */
-var React = require('react/addons');
-var TestUtils = React.addons.TestUtils;
-var Draggable = require('../index');
+var React = require('react');
+var ReactDOM = require('react-dom');
+var TestUtils = require('react-dom/test-utils');
+var Draggable = require('../lib/react-drag');
 
 describe('react-draggable', function () {
   'use strict';
@@ -59,7 +59,7 @@ describe('react-draggable', function () {
         </Draggable>
       );
 
-      TestUtils.Simulate.mouseDown(drag.getDOMNode());
+      TestUtils.Simulate.mouseDown(ReactDOM.findDOMNode(drag));
       expect(called).toEqual(true);
     });
 
@@ -71,8 +71,8 @@ describe('react-draggable', function () {
         </Draggable>
       );
 
-      TestUtils.Simulate.mouseDown(drag.getDOMNode());
-      TestUtils.Simulate.mouseUp(drag.getDOMNode());
+      TestUtils.Simulate.mouseDown(ReactDOM.findDOMNode(drag));
+      TestUtils.Simulate.mouseUp(ReactDOM.findDOMNode(drag));
       expect(called).toEqual(true);
     });
   });
@@ -81,7 +81,7 @@ describe('react-draggable', function () {
     it('should initialize dragging onmousedown', function () {
       var drag = TestUtils.renderIntoDocument(<Draggable><div/></Draggable>);
 
-      TestUtils.Simulate.mouseDown(drag.getDOMNode());
+      TestUtils.Simulate.mouseDown(ReactDOM.findDOMNode(drag));
       expect(drag.state.dragging).toEqual(true);
     });
 
@@ -95,10 +95,10 @@ describe('react-draggable', function () {
         </Draggable>
       );
 
-      TestUtils.Simulate.mouseDown(drag.getDOMNode().querySelector('.content'));
+      TestUtils.Simulate.mouseDown(ReactDOM.findDOMNode(drag).querySelector('.content'));
       expect(drag.state.dragging).toEqual(false);
 
-      TestUtils.Simulate.mouseDown(drag.getDOMNode().querySelector('.handle'));
+      TestUtils.Simulate.mouseDown(ReactDOM.findDOMNode(drag).querySelector('.handle'));
       expect(drag.state.dragging).toEqual(true);
     });
 
@@ -112,49 +112,31 @@ describe('react-draggable', function () {
         </Draggable>
       );
 
-      TestUtils.Simulate.mouseDown(drag.getDOMNode().querySelector('.cancel'));
+      TestUtils.Simulate.mouseDown(ReactDOM.findDOMNode(drag).querySelector('.cancel'));
       expect(drag.state.dragging).toEqual(false);
 
-      TestUtils.Simulate.mouseDown(drag.getDOMNode().querySelector('.content'));
+      TestUtils.Simulate.mouseDown(ReactDOM.findDOMNode(drag).querySelector('.content'));
       expect(drag.state.dragging).toEqual(true);
     });
 
     it('should discontinue dragging onmouseup', function () {
       var drag = TestUtils.renderIntoDocument(<Draggable><div/></Draggable>);
 
-      TestUtils.Simulate.mouseDown(drag.getDOMNode());
+      TestUtils.Simulate.mouseDown(ReactDOM.findDOMNode(drag));
       expect(drag.state.dragging).toEqual(true);
 
-      TestUtils.Simulate.mouseUp(drag.getDOMNode());
+      TestUtils.Simulate.mouseUp(ReactDOM.findDOMNode(drag));
       expect(drag.state.dragging).toEqual(false);
     });
   });
 
   describe('validation', function () {
     it('should result with invariant when there isn\'t any children', function () {
-      var drag = (<Draggable/>);
-
-      var error = false;
-      try {
-        TestUtils.renderIntoDocument(drag);
-      } catch (e) {
-        error = true;
-      }
-
-      expect(error).toEqual(true);
+      expect(() => TestUtils.renderIntoDocument(<Draggable/>)).toThrow();
     });
 
     it('should result with invariant if there\'s more than a single child', function () {
-      var drag = (<Draggable><div/><div/></Draggable>);
-
-      var error = false;
-      try {
-        TestUtils.renderIntoDocument(drag);
-      } catch (e) {
-        error = true;
-      }
-
-      expect(error).toEqual(true);
+      expect(() => TestUtils.renderIntoDocument(<Draggable><div/><div/></Draggable>)).toThrow();
     });
   });
 });
