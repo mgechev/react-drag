@@ -8,7 +8,7 @@ module.exports = function (config) {
     frameworks: ['jasmine'],
 
     files: [
-      'specs/main.js'
+      'specs/draggable.spec.js'
     ],
 
     exclude: [
@@ -48,7 +48,7 @@ module.exports = function (config) {
 
     browsers: ['Chrome'],
 
-    singleRun: false,
+    singleRun: true,
 
     plugins: [
       require('karma-jasmine'),
