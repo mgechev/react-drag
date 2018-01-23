@@ -49,11 +49,13 @@
 </head>
 <body>
   <div id="container"></div>
-<script src="../node_modules/react/dist/react-with-addons.js"></script>
-<script src="../node_modules/react-dom/dist/react-dom.js"></script>
-<script src="../dist/react-drag.min.js"></script>
+<script src="../node_modules/react/umd/react.development.js"></script>
+<script src="../node_modules/react-dom/umd/react-dom.development.js"></script>
+<script src="../node_modules/prop-types/prop-types.js"></script>
+<script src="../node_modules/create-react-class/create-react-class.js"></script>
+<script src="../dist/react-drag.js"></script>
 <script>
-var App = React.createClass({
+var App = createReactClass({
   displayName: "App",
 
   getInitialState: function getInitialState() {

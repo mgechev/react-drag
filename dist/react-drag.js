@@ -4,8 +4,8 @@
 
 var React = (typeof window !== "undefined" ? window['React'] : typeof global !== "undefined" ? global['React'] : null);
 var findDOMNode = (typeof window !== "undefined" ? window['ReactDOM'] : typeof global !== "undefined" ? global['ReactDOM'] : null).findDOMNode;
-var propTypes = require('prop-types');
-var createReactClass = require('create-react-class');
+var propTypes = (typeof window !== "undefined" ? window['PropTypes'] : typeof global !== "undefined" ? global['PropTypes'] : null);
+var createReactClass = (typeof window !== "undefined" ? window['createReactClass'] : typeof global !== "undefined" ? global['createReactClass'] : null);
 
 function classNames() {
   var classes = '';
@@ -555,5 +555,5 @@ module.exports = ReactDrag;
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"create-react-class":"create-react-class","prop-types":"prop-types"}]},{},[1])(1)
+},{}]},{},[1])(1)
 });
