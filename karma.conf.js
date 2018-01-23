@@ -8,23 +8,29 @@ module.exports = function (config) {
     frameworks: ['jasmine'],
 
     files: [
-      'specs/main.js'
+      'specs/draggable.spec.js'
     ],
 
     exclude: [
     ],
 
     preprocessors: {
-      'specs/main.js': ['webpack']
+      'specs/draggable.spec.js': ['webpack']
     },
 
     webpack: {
       cache: true,
       module: {
-        loaders: [
+        rules: [
           {
             test: /\.js$/,
-            loader: 'jsx-loader'
+            exclude: /(node_modules|bower_components)/,
+            use: {
+              loader: 'babel-loader',
+              options: {
+                presets: ['babel-preset-env','react']
+              }
+            }
           }
         ]
       }
@@ -48,7 +54,7 @@ module.exports = function (config) {
 
     browsers: ['Chrome'],
 
-    singleRun: false,
+    singleRun: true,
 
     plugins: [
       require('karma-jasmine'),

@@ -1,12 +1,13 @@
 {
   "name": "react-drag",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "React draggable component",
   "main": "lib/react-drag.js",
   "scripts": {
-    "build": "browserify -x react -x react-dom --standalone ReactDrag ./lib/react-drag.js > ./dist/react-drag.js",
+    "build": "browserify -x react -x react-dom -x prop-types -x create-react-class --standalone ReactDrag ./lib/react-drag.js > ./dist/react-drag.js",
     "minify": "uglifyjs ./dist/react-drag.js --screw-ie8 --compress --mangle --output ./dist/react-drag.min.js",
-    "build_publish": "npm run build && npm run minify"
+    "build_publish": "npm run build && npm run minify",
+    "test": "./node_modules/.bin/karma start ./karma.conf.js"
   },
   "repository": {
     "type": "git",
@@ -23,30 +24,42 @@
     "url": "https://github.com/mgechev/react-drag/issues"
   },
   "homepage": "https://github.com/mgechev/react-drag",
-  "dependencies": {
-    "react": "^15.3.0",
-    "react-dom": "^15.3.0"
-  },
   "devDependencies": {
-    "browserify": "^13.0.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "browserify": "15.2.0",
     "browserify-shim": "^3.8.11",
-    "karma": "^0.12.19",
-    "karma-chrome-launcher": "^0.1.4",
-    "karma-cli": "0.0.4",
-    "karma-firefox-launcher": "^0.1.3",
-    "karma-jasmine": "^0.1.5",
+    "create-react-class": "^15.6.2",
+    "jasmine-core": "^2.9.1",
+    "karma": "2.0.0",
+    "karma-chrome-launcher": "2.2.0",
+    "karma-cli": "1.0.1",
+    "karma-firefox-launcher": "1.1.0",
+    "karma-jasmine": "1.1.1",
+    "karma-webpack": "^2.0.9",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "2.0.0",
+    "webpack": "^3.10.0"
   },
   "peerDependencies": {
-    "react": "^15.3.0",
-    "react-dom": "^15.3.0"
+    "create-react-class": "^15.0.0",
+    "prop-types": "^15.0.0",
+    "react": "^15.0.0 || ^16.0.0",
+    "react-dom": "^15.0.0 || ^16.0.0"
   },
   "browserify": {
-    "transform": ["browserify-shim"]
+    "transform": [
+      "browserify-shim"
+    ]
   },
   "browserify-shim": {
     "react": "global:React",
-    "react-dom": "global:ReactDOM"
+    "react-dom": "global:ReactDOM",
+    "prop-types": "global:PropTypes",
+    "create-react-class":  "global:createReactClass"
   }
 }
