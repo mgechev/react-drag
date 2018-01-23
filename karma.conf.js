@@ -15,7 +15,7 @@ module.exports = function (config) {
     ],
 
     preprocessors: {
-      'specs/main.js': ['webpack']
+      'specs/draggable.spec.js': ['webpack']
     },
 
     webpack: {
