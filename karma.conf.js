@@ -21,10 +21,16 @@ module.exports = function (config) {
     webpack: {
       cache: true,
       module: {
-        loaders: [
+        rules: [
           {
             test: /\.js$/,
-            loader: 'jsx-loader'
+            exclude: /(node_modules|bower_components)/,
+            use: {
+              loader: 'babel-loader',
+              options: {
+                presets: ['babel-preset-env','react']
+              }
+            }
           }
         ]
       }
