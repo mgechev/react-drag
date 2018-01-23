@@ -24,12 +24,6 @@
     "url": "https://github.com/mgechev/react-drag/issues"
   },
   "homepage": "https://github.com/mgechev/react-drag",
-  "dependencies": {
-    "create-react-class": "^15.6.2",
-    "prop-types": "^15.6.0",
-    "react": "^15.3.0",
-    "react-dom": "^15.3.0"
-  },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
@@ -44,13 +38,17 @@
     "karma-firefox-launcher": "1.1.0",
     "karma-jasmine": "1.1.1",
     "karma-webpack": "^2.0.9",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "2.0.0",
     "webpack": "^3.10.0"
   },
   "peerDependencies": {
-    "react": "^15.3.0",
-    "react-dom": "^15.3.0"
+    "create-react-class": "^15.0.0",
+    "prop-types": "^15.0.0",
+    "react": "^15.0.0 || ^16.0.0",
+    "react-dom": "^15.0.0 || ^16.0.0"
   },
   "browserify": {
     "transform": [
