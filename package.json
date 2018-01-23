@@ -1,6 +1,6 @@
 {
   "name": "react-drag",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "React draggable component",
   "main": "lib/react-drag.js",
   "scripts": {
