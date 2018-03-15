@@ -2,7 +2,7 @@
   "name": "react-drag",
   "version": "2.0.2",
   "description": "React draggable component",
-  "main": "react-drag.js",
+  "main": "lib/react-drag.js",
   "scripts": {
     "build": "browserify -x react -x react-dom -x prop-types -x create-react-class -t browserify-shim --standalone ReactDrag ./lib/react-drag.js > ./dist/react-drag.js",
     "minify": "uglifyjs ./dist/react-drag.js --screw-ie8 --compress --mangle --output ./dist/react-drag.min.js",
